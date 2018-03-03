@@ -8,10 +8,10 @@ import re
 from bs4 import BeautifulSoup
 
 # 情感分析
-nlp = BosonNLP('uHKVapyC.24007.8mn_T4Zs1Tlm')
+nlp = BosonNLP('your bosonnlp token')
 
 # 网易云音乐歌词id
-id = 191232
+id = 27598531
 url='http://music.163.com/api/song/lyric?' + 'id=' + str(id) + '&lv=1&kv=1&tv=-1'
 lyric = requests.get(url)
 json_obj = lyric.text
@@ -28,8 +28,8 @@ lrc = lrc[6:len(lrc)]
 def main():
         print('loading ...歌曲id:' + str(id))
         lrc1 = [line for line in lrc if line]
-        print(lrc1[1])
-        all_proba = nlp.sentiment(lrc1[1])
+        print(lrc1)
+        all_proba = nlp.sentiment(lrc1)
         text_with_proba = zip(lrc1, all_proba)
         sort_text = sorted(text_with_proba, key=lambda x : x[1][1], reverse=False)
         # output
